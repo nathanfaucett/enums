@@ -46,9 +46,7 @@ function createEnums(values) {
 }
 
 function createEnum(value) {
-    var object = create(null);
-    freeze(object);
-    descriptor.value = object;
+    descriptor.value = stringToHash(value);
     defineProperty(createEnum.object, value, descriptor);
     descriptor.value = null;
 }
@@ -57,3 +55,15 @@ createEnum.set = function(object) {
     this.object = object;
     return this;
 };
+
+function stringToHash(value) {
+    var result = 0,
+        i = -1,
+        il = value.length - 1;
+
+    while (i++ < il) {
+        result = result * 31 + value.charCodeAt(i);
+    }
+
+    return result;
+}

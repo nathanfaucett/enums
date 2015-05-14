@@ -17,7 +17,7 @@ describe("enums(values)", function() {
             "use strict";
 
             try {
-                types.FOUR = {};
+                types.FOUR = 4;
             } catch (e) {
                 assert.equal(e.message, "Can't add property FOUR, object is not extensible");
             }
