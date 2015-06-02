@@ -2,11 +2,11 @@ var create = require("create"),
     defineProperty = require("define_property"),
     forEach = require("for_each"),
     isString = require("is_string"),
-    isArrayLike = require("is_array_like"),
+    isNumber = require("is_number"),
     emptyFunction = require("empty_function");
 
 
-var reSpliter = /[\s ]+/,
+var reSpliter = /[\s\, ]+/,
     descriptor = {
         configurable: false,
         enumerable: true,
@@ -22,19 +22,11 @@ module.exports = enums;
 function enums(values) {
     if (isString(values)) {
         values = values.split(reSpliter);
-        forEach(values, insureStrings);
         return createEnums(values);
-    } else if (isArrayLike(values)) {
-        forEach(values, insureStrings);
+    } else if (values) {
         return createEnums(values);
     } else {
         throw new TypeError("enums(values) values must be an array or a string");
-    }
-}
-
-function insureStrings(value) {
-    if (!isString(value)) {
-        throw new TypeError("enums(values) enum names must be strings");
     }
 }
 
@@ -45,9 +37,13 @@ function createEnums(values) {
     return object;
 }
 
-function createEnum(value) {
-    descriptor.value = stringToHash(value);
-    defineProperty(createEnum.object, value, descriptor);
+function createEnum(value, key) {
+    if (isNumber(key)) {
+        key = value;
+    }
+
+    descriptor.value = isString(value) ? stringToHash(value) : value;
+    defineProperty(createEnum.object, key, descriptor);
     descriptor.value = null;
 }
 

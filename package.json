@@ -25,7 +25,7 @@
     "define_property": "git://github.com/nathanfaucett/define_property",
     "empty_function": "git://github.com/nathanfaucett/empty_function",
     "for_each": "git://github.com/nathanfaucett/for_each",
-    "is_array_like": "git://github.com/nathanfaucett/is_array_like",
+    "is_number": "git://github.com/nathanfaucett/is_number",
     "is_string": "git://github.com/nathanfaucett/is_string"
   }
 }

@@ -35,4 +35,18 @@ describe("enums(values)", function() {
             runTest(enums(["ONE", "TWO", "THREE"]));
         });
     });
+
+    describe("enums(values: Object<Key: String, Value: Number>)", function() {
+        it("should return new object with keys from Object keys", function() {
+            var num = enums({
+                ONE: 1,
+                TWO: 2,
+                THREE: 3
+            });
+
+            assert.equal(num.ONE, 1);
+            assert.equal(num.TWO, 2);
+            assert.equal(num.THREE, 3);
+        });
+    });
 });
