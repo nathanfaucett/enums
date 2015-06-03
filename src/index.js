@@ -40,9 +40,10 @@ function createEnums(values) {
 function createEnum(value, key) {
     if (isNumber(key)) {
         key = value;
+        value = stringToHash(value);
     }
 
-    descriptor.value = isString(value) ? stringToHash(value) : value;
+    descriptor.value = value;
     defineProperty(createEnum.object, key, descriptor);
     descriptor.value = null;
 }
