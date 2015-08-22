@@ -11,6 +11,12 @@
     "enums",
     "enums.js"
   ],
+  "scripts": {
+    "test": "npm run test-node",
+    "test-node": "node ./test | ./node_modules/.bin/tap-spec",
+    "test-node-raw": "node ./test",
+    "test-browser-local": "zuul --local 8080 --ui tape -- ./test"
+  },
   "author": "Nathan Faucett",
   "license": "BSD-2-Clause",
   "readmeFilename": "README.md",
@@ -18,14 +24,16 @@
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-jsbeautifier": "^0.2.7",
-    "mocha": "^2.1.0"
+    "tap-spec": "^4.1.0",
+    "tape": "^4.2.0",
+    "zuul": "^3.3.0"
   },
   "dependencies": {
-    "create": "git://github.com/nathanfaucett/create",
-    "define_property": "git://github.com/nathanfaucett/define_property",
-    "empty_function": "git://github.com/nathanfaucett/empty_function",
-    "for_each": "git://github.com/nathanfaucett/for_each",
-    "is_number": "git://github.com/nathanfaucett/is_number",
-    "is_string": "git://github.com/nathanfaucett/is_string"
+    "create": "git://github.com/nathanfaucett/create.git",
+    "define_property": "git://github.com/nathanfaucett/define_property.git",
+    "empty_function": "git://github.com/nathanfaucett/empty_function.git",
+    "for_each": "git://github.com/nathanfaucett/for_each.git",
+    "is_number": "git://github.com/nathanfaucett/is_number.git",
+    "is_string": "git://github.com/nathanfaucett/is_string.git"
   }
 }

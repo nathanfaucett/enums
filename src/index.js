@@ -49,8 +49,8 @@ function createEnum(value, key) {
 }
 
 createEnum.set = function(object) {
-    this.object = object;
-    return this;
+    createEnum.object = object;
+    return createEnum;
 };
 
 function stringToHash(value) {
