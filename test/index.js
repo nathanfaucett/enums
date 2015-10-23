@@ -3,25 +3,45 @@ var tape = require("tape"),
 
 
 function runTest(types, assert) {
+
     assert.equal(types.ONE, types.ONE);
     assert.equal(types.TWO, types.TWO);
     assert.equal(types.THREE, types.THREE);
 
     assert.notEqual(types.ONE, types.TWO);
-    assert.notEqual(types.ONE, types.THREE);
     assert.notEqual(types.TWO, types.THREE);
+    assert.notEqual(types.THREE, types.ONE);
 
-    (function() {
-        "use strict";
-
-        try {
-            types.FOUR = 4;
-        } catch (e) {
-            assert.equal(e.message, "Can't add property FOUR, object is not extensible");
-        }
-    }());
+    if (Object.freeze) {
+        runFreezeTest(types, assert);
+    }
 }
 
+function runFreezeTest(types, assert) {
+    "use strict";
+    var error;
+
+    try {
+        types.FOUR = 4;
+    } catch (e) {
+        error = e;
+    }
+
+    assert.equal(!!error, true);
+}
+
+tape("enums(values) should throw error if invalid value", function(assert) {
+    var error;
+
+    try {
+        enums(null);
+    } catch (e) {
+        error = e;
+    }
+
+    assert.equal(error.message, "enums(values) values must be an array, object, or a string");
+    assert.end();
+});
 
 tape("enums(values: String) should return new object with keys from string as unique values only equal to itself", function(assert) {
     runTest(enums("ONE TWO THREE"), assert);

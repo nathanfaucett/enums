@@ -3,7 +3,8 @@ var create = require("create"),
     forEach = require("for_each"),
     isString = require("is_string"),
     isNumber = require("is_number"),
-    emptyFunction = require("empty_function");
+    emptyFunction = require("empty_function"),
+    stringHashCode = require("string-hash_code");
 
 
 var reSpliter = /[\s\, ]+/,
@@ -21,12 +22,11 @@ module.exports = enums;
 
 function enums(values) {
     if (isString(values)) {
-        values = values.split(reSpliter);
-        return createEnums(values);
+        return createEnums(values.split(reSpliter));
     } else if (values) {
         return createEnums(values);
     } else {
-        throw new TypeError("enums(values) values must be an array or a string");
+        throw new TypeError("enums(values) values must be an array, object, or a string");
     }
 }
 
@@ -40,7 +40,7 @@ function createEnums(values) {
 function createEnum(value, key) {
     if (isNumber(key)) {
         key = value;
-        value = stringToHash(value);
+        value = stringHashCode(value);
     }
 
     descriptor.value = value;
@@ -52,15 +52,3 @@ createEnum.set = function(object) {
     createEnum.object = object;
     return createEnum;
 };
-
-function stringToHash(value) {
-    var result = 0,
-        i = -1,
-        il = value.length - 1;
-
-    while (i++ < il) {
-        result = result * 31 + value.charCodeAt(i);
-    }
-
-    return result;
-}
