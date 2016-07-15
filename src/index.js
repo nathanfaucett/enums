@@ -1,10 +1,12 @@
-var create = require("create"),
-    defineProperty = require("define_property"),
-    forEach = require("for_each"),
-    isString = require("is_string"),
-    isNumber = require("is_number"),
-    emptyFunction = require("empty_function"),
-    stringHashCode = require("string-hash_code");
+var create = require("@nathanfaucett/create"),
+    defineProperty = require("@nathanfaucett/define_property"),
+    objectForEach = require("@nathanfaucett/object-for_each"),
+    arrayForEach = require("@nathanfaucett/array-for_each"),
+    isString = require("@nathanfaucett/is_string"),
+    isNumber = require("@nathanfaucett/is_number"),
+    isArray = require("@nathanfaucett/is_array"),
+    emptyFunction = require("@nathanfaucett/empty_function"),
+    stringHashCode = require("@nathanfaucett/string-hash_code");
 
 
 var reSpliter = /[\s\, ]+/,
@@ -32,8 +34,14 @@ function enums(values) {
 
 function createEnums(values) {
     var object = create(null);
-    forEach(values, createEnum.set(object));
+
+    if (isArray(values)) {
+        arrayForEach(values, createEnum.set(object));
+    } else {
+        objectForEach(values, createEnum.set(object));
+    }
     freeze(object);
+
     return object;
 }
 
