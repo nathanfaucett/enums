@@ -1,6 +1,6 @@
 {
   "name": "@nathanfaucett/enums",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "enum creator",
   "repository": {
     "type": "git",
@@ -29,11 +29,11 @@
     "zuul": "^3.3.0"
   },
   "dependencies": {
-    "@nathanfaucett/create": "^0.0.1",
-    "@nathanfaucett/define_property": "^0.0.1",
+    "@nathanfaucett/create": "^0.0.2",
+    "@nathanfaucett/define_property": "^0.0.3",
     "@nathanfaucett/empty_function": "^0.0.1",
     "@nathanfaucett/array-for_each": "^0.0.1",
-    "@nathanfaucett/object-for_each": "^0.0.1",
+    "@nathanfaucett/object-for_each": "^0.0.2",
     "@nathanfaucett/is_array": "^0.0.1",
     "@nathanfaucett/is_number": "^0.0.1",
     "@nathanfaucett/is_string": "^0.0.1",
